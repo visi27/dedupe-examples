@@ -86,13 +86,13 @@ def readData(filename):
 
     
 print('importing data ...')
-data_1 = readData('AbtBuy_Abt.csv')
-data_2 = readData('AbtBuy_Buy.csv')
+data_1 = readData('neptun.csv')
+data_2 = readData('shpresa.csv')
 
 def descriptions() :
     for dataset in (data_1, data_2) :
         for record in dataset.values() :
-            yield record['description']
+            yield record['name']
 
 # ## Training
 
@@ -108,10 +108,8 @@ else:
     # Notice how we are telling the linker to use a custom field comparator
     # for the 'price' field. 
     fields = [
-        {'field' : 'title', 'type': 'String'},
-        {'field' : 'title', 'type': 'Text', 'corpus' : descriptions()},
-        {'field' : 'description', 'type': 'Text',
-         'has missing' : True, 'corpus' : descriptions()},
+        {'field' : 'name', 'type': 'String'},
+        {'field' : 'name', 'type': 'Text', 'corpus' : descriptions()},
         {'field' : 'price', 'type' : 'Price', 'has missing' : True}]
 
     # Create a new linker object and pass our data model to it.
@@ -188,7 +186,7 @@ with open(output_file, 'w') as f:
     
     header_unwritten = True
 
-    for fileno, filename in enumerate(('AbtBuy_Abt.csv', 'AbtBuy_Buy.csv')) :
+    for fileno, filename in enumerate(('neptun.csv', 'shpresa.csv')) :
         with open(filename) as f_input :
             reader = csv.reader(f_input)
 
