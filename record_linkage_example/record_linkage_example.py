@@ -87,7 +87,7 @@ def readData(filename):
     
 print('importing data ...')
 data_1 = readData('neptun.csv')
-data_2 = readData('shpresa.csv')
+data_2 = readData('smartpoint.csv')
 
 def descriptions() :
     for dataset in (data_1, data_2) :
@@ -186,7 +186,7 @@ with open(output_file, 'w') as f:
     
     header_unwritten = True
 
-    for fileno, filename in enumerate(('neptun.csv', 'shpresa.csv')) :
+    for fileno, filename in enumerate(('neptun.csv', 'smartpoint.csv')) :
         with open(filename) as f_input :
             reader = csv.reader(f_input)
 
